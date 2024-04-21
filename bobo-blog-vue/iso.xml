@@ -1,0 +1,86 @@
+    <?xml version="1.0" encoding="UTF-8"?>
+<Envelope xmlns="urn:swift:xsd:envelope" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:swift:xsd:envelope ../../../../Schemas/Translator_envelope.xsd">
+    <AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><!--对应MT报文的基本报头、应用报头、用户报头-->
+        <Fr><!--发报行-->                                    
+            <FIId>                                
+                <FinInstnId>                            
+                    <BICFI>RBOSGB2L</BICFI>                     
+                </FinInstnId>                            
+            </FIId>                                
+        </Fr>                                    
+        <To><!--收报行-->                                    
+            <FIId>                                
+                <FinInstnId>                            
+                    <BICFI>NDEAFIHH</BICFI>                        
+                </FinInstnId>                            
+            </FIId>                                
+        </To>                                    
+        <BizMsgIdr>pacs8bizmsgidr01</BizMsgIdr><!--端到端标识号，用于唯一确定报文-->                                    
+        <MsgDefIdr>pacs.008.001.08</MsgDefIdr><!--报文的类型-->                                    
+        <BizSvc>swift.cbprplus.02</BizSvc><!--交易双方同意的服务规则，并在次规则下传递本报文-->                                    
+        <CreDt>2021-02-17T08:30:00+01:00</CreDt><!--创建时间-->                                  
+    </AppHdr>                                        
+    <Document xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.008.001.08"><!--对应MT报文的正文和报尾-->                                      
+        <FIToFICstmrCdtTrf><!--用户之间的FIN业务报文-->                                  
+            <GrpHdr><!--报文业务头标签，说明业务中交易的信息-->                          
+                <MsgId>pacs8bizmsgidr01</MsgId><!--指示行指定，发送给交易链中的下一家银行-->                            
+                <CreDtTm>2021-02-17T08:30:00+01:00</CreDtTm>                            
+                <NbOfTxs>1</NbOfTxs><!--交易数目-->                            
+                <SttlmInf><!--说明交易双方及其代理行完成支付的细节-->                          
+                    <SttlmMtd>INDA</SttlmMtd><!--说明完成支付所用的方法-->                  
+                </SttlmInf>                            
+            </GrpHdr>                                
+            <CdtTrfTxInf><!--交易信息标签，说明单次交易的详细信息;有8个必填子标签-->                               
+                <PmtId><!--付款的详细信息-->                           
+                    <InstrId>pacs8bizmsgidr01</InstrId>                        
+                    <EndToEndId>pacs008EndToEndId-001</EndToEndId>                        
+                    <UETR>8a562c67-ca16-48ba-b074-65581be6f001</UETR>                        
+                </PmtId>                            
+                <IntrBkSttlmAmt Ccy="EUR">1500000</IntrBkSttlmAmt><!--付款的币种与金额-->                            
+                <IntrBkSttlmDt>2021-02-17</IntrBkSttlmDt><!--付款的日期-->      
+                <ChrgBr>DEBT</ChrgBr><!--费用承担方-->
+                <InstgAgt><!--付款指示行-->   
+                    <FinInstnId>                        
+                        <BICFI>RBOSGB2L</BICFI>                    
+                    </FinInstnId>                        
+                </InstgAgt>                            
+                <InstdAgt><!--付款代理行-->              
+                    <FinInstnId>                        
+                        <BICFI>NDEAFIHH</BICFI>                    
+                    </FinInstnId>                        
+                </InstdAgt>                            
+                <IntrmyAgt1><!--第一家付款中间行-->                           
+                    <FinInstnId>                        
+                        <BICFI>HELSFIHH</BICFI>                    
+                    </FinInstnId>                        
+                </IntrmyAgt1>                            
+                <Dbtr><!--债务方 借方 钱增加的一方； 汇款？-->                           
+                    <Nm>A Debiter</Nm>                        
+                    <PstlAdr><!--地址-->                        
+                        <StrtNm>280 Bishopsgate</StrtNm>                    
+                        <TwnNm>London</TwnNm>                    
+                        <Ctry>GB</Ctry><!--国家地区代码-->                   
+                    </PstlAdr>                        
+                </Dbtr>                            
+                <DbtrAgt><!--债务方下属的金融机构; 也就是帐户行-->                            
+                    <FinInstnId>                        
+                        <BICFI>RBOSGB2L</BICFI>                    
+                    </FinInstnId>                        
+                </DbtrAgt>                            
+                <CdtrAgt><!--债权方下属的金融机构-->
+                    <FinInstnId>                        
+                        <BICFI>OKOYFIHH</BICFI>                    
+                    </FinInstnId>                        
+                </CdtrAgt>                            
+                <Cdtr><!--债权方； 收款？-->
+                    <Nm>Z Krediter</Nm>                        
+                    <PstlAdr>                        
+                        <StrtNm>Antinkatu 11</StrtNm>                    
+                        <TwnNm>Pori</TwnNm>                    
+                        <Ctry>FI</Ctry>                    
+                    </PstlAdr>                        
+                </Cdtr>                            
+            </CdtTrfTxInf>                                
+        </FIToFICstmrCdtTrf>                                    
+    </Document>                                        
+</Envelope>          
